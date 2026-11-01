@@ -1,0 +1,1242 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Projects | Asih Nur Annisa</title>
+  <meta name="description" content="Kumpulan proyek akademik, website, automation testing, dan pengolahan data oleh Asih Nur Annisa.">
+  <meta name="theme-color" content="#fff5f8">
+
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+    /* PROJECT INTRO */
+    .project-intro {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .project-count {
+      flex-shrink: 0;
+      padding: 12px 16px;
+      background: #fce7f0;
+      color: #49313d;
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      box-shadow: 3px 3px 0 #e9b5cc;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+    }
+
+    .project-count strong {
+      font-size: 25px;
+    }
+
+    /* FILTER */
+    .filter-btn {
+      transition: transform .2s, background .2s, box-shadow .2s;
+    }
+
+    .filter-btn.active {
+      background: #f5a8c8;
+      color: #49313d;
+      box-shadow: 2px 2px 0 #e9b5cc;
+    }
+
+    .filter-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    /* PROJECT CARD */
+    .project-card {
+      min-width: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 6px 6px 0 #f0c5d7;
+    }
+
+    .project-card:focus-within {
+      outline: 3px solid #e98bb5;
+      outline-offset: 4px;
+    }
+
+    .project-card .project-body {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+    }
+
+    .project-card .card-actions {
+      margin-top: auto;
+      padding-top: 18px;
+    }
+
+    .filter-btn:focus-visible,
+    .detail-btn:focus-visible,
+    .detail-close:focus-visible,
+    .gallery-item img:focus-visible {
+      outline: 3px solid #e98bb5;
+      outline-offset: 3px;
+    }
+
+    .project-image {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      background: #fce7f0;
+    }
+
+    .project-image img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .35s;
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.025);
+    }
+
+    .project-number {
+      position: absolute;
+      top: 19px;
+      left: 19px;
+      z-index: 1;
+      background: #fff0f6;
+      color: #75465d;
+      border: 1px solid #e9b5cc;
+      border-radius: 7px;
+      padding: 4px 8px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .project-body {
+      gap: 0;
+      min-width: 0;
+    }
+
+    .project-body h3 {
+      margin-top: 9px;
+      overflow-wrap: anywhere;
+    }
+
+    .project-description {
+      flex: 1;
+      overflow-wrap: anywhere;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 0 0 13px;
+    }
+
+    .project-meta span {
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    .project-meta span + span::before {
+      content: "·";
+      margin-right: 7px;
+    }
+
+    .project-card .card-actions {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .detail-btn {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .project-card[hidden] {
+      display: none !important;
+    }
+
+    /* BOTTOM CTA */
+    .project-end {
+      margin-top: 36px;
+      padding: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      background: #fce7f0;
+      color: #49313d;
+      border: 1.5px solid #e9b5cc;
+      border-radius: var(--radius);
+      box-shadow: 4px 4px 0 #f0c5d7;
+    }
+
+    .project-end h2 {
+      margin: 0 0 5px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      line-height: 1.35;
+    }
+
+    .project-end p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    /* PROJECT DETAIL DIALOG */
+    .detail-dialog {
+      width: min(900px, calc(100% - 28px));
+      max-height: 88vh;
+      padding: 0;
+      overflow: auto;
+      color: #49313d;
+      background: #fffafd;
+      border: 1.5px solid #e9b5cc;
+      border-radius: 18px;
+      box-shadow: 8px 8px 0 #e9b5cc;
+      overscroll-behavior: contain;
+    }
+
+    .detail-dialog::backdrop {
+      background: rgba(73, 49, 61, .58);
+      backdrop-filter: blur(5px);
+    }
+
+    .detail-top {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      padding: 15px 20px;
+      background: #fff0f6;
+      border-bottom: 1.5px solid #f0d4e0;
+    }
+
+    .detail-top strong,
+    .detail-content h2,
+    .detail-content h3,
+    .lightbox-bar strong {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .detail-top strong {
+      overflow-wrap: anywhere;
+    }
+
+    .detail-close {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+      border: 1.5px solid #e9b5cc;
+      border-radius: 9px;
+      background: #fce7f0;
+      color: #75465d;
+      font-size: 20px;
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+
+    .detail-close:hover {
+      background: #f5c5da;
+      transform: rotate(4deg);
+    }
+
+    .detail-content {
+      padding: 25px;
+      min-width: 0;
+    }
+
+    .detail-content h2 {
+      margin: 10px 0;
+      font-size: clamp(25px, 4vw, 38px);
+      line-height: 1.15;
+      letter-spacing: -1px;
+      overflow-wrap: anywhere;
+    }
+
+    .detail-content h3 {
+      margin: 28px 0 10px;
+      line-height: 1.4;
+    }
+
+    .detail-content p,
+    .detail-content li {
+      color: #6e5963;
+      font-size: 13px;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    .detail-content ul {
+      padding-left: 20px;
+    }
+
+    .detail-cover {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      aspect-ratio: 16 / 8;
+      object-fit: cover;
+      border: 1.5px solid #e9b5cc;
+      border-radius: 12px;
+      background: #fce7f0;
+      margin: 20px 0;
+    }
+
+    /* SCREENSHOT GALLERY */
+    .detail-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      align-items: start;
+    }
+
+    .gallery-item {
+      min-width: 0;
+      margin: 0;
+      padding: 6px;
+      background: #ffffff;
+      border: 1.5px solid #f0d4e0;
+      border-radius: 12px;
+      box-shadow: 2px 2px 0 #f0c5d7;
+      overflow: hidden;
+    }
+
+    .gallery-item img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 7px;
+      background: #fce7f0;
+      cursor: zoom-in;
+      transition: transform .2s ease;
+    }
+
+    .gallery-item img:hover {
+      transform: scale(1.015);
+    }
+
+    .gallery-item[hidden] {
+      display: none !important;
+    }
+
+    .gallery-item figcaption {
+      padding: 8px 3px 3px;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1.5;
+      color: #75465d;
+      overflow-wrap: anywhere;
+    }
+
+    .gallery-hint {
+      margin: 8px 0 0;
+      color: #947c88;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .detail-columns {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .detail-panel {
+      min-width: 0;
+      padding: 17px;
+      background: #fff5f9;
+      border: 1.5px solid #f0d4e0;
+      border-radius: 12px;
+    }
+
+    .detail-panel h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      color: #75465d;
+    }
+
+    .detail-panel ul {
+      padding-left: 18px;
+      margin-bottom: 0;
+    }
+
+    .detail-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid #f0d4e0;
+    }
+
+    .detail-actions a[hidden] {
+      display: none !important;
+    }
+
+    .detail-actions a {
+      overflow-wrap: anywhere;
+    }
+
+    .detail-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .detail-nav button {
+      flex: 1;
+      min-width: 140px;
+      padding: 11px 13px;
+      border: 1.5px solid #e9b5cc;
+      border-radius: 9px;
+      background: #fff0f6;
+      color: #75465d;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+
+    .detail-nav button:hover {
+      background: #fce0ec;
+      transform: translateY(-1px);
+    }
+
+    /* SCREENSHOT LIGHTBOX */
+    .image-lightbox {
+      width: min(1100px, calc(100% - 24px));
+      max-width: none;
+      max-height: 92vh;
+      padding: 12px;
+      border: 1.5px solid #e9b5cc;
+      border-radius: 16px;
+      background: #fffafd;
+      color: #49313d;
+      box-shadow: 7px 7px 0 #e9b5cc;
+      overflow: auto;
+      overscroll-behavior: contain;
+    }
+
+    .image-lightbox::backdrop {
+      background: rgba(73, 49, 61, .72);
+      backdrop-filter: blur(5px);
+    }
+
+    .lightbox-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 2px 2px 12px;
+    }
+
+    .lightbox-bar strong {
+      font-size: 13px;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    .lightbox-image {
+      display: block;
+      max-width: 100%;
+      max-height: 76vh;
+      margin: 0 auto;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #fce7f0;
+    }
+
+    .lightbox-caption {
+      margin: 10px 2px 2px;
+      color: #947c88;
+      font-size: 12px;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    /* TABLET AND MOBILE */
+    @media (max-width: 720px) {
+      .project-intro {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .project-end {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .detail-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .detail-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .detail-content {
+        padding: 17px;
+      }
+
+      .detail-gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .detail-nav button {
+        min-width: 100%;
+      }
+    }
+
+    /* GALERI SCREENSHOT: BISA DIGESER KE SAMPING */
+    /* GALERI DOKUMENTASI - TAMPILKAN 6 GAMBAR */
+#detail-gallery {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 16px;
+
+  width: 100%;
+  max-width: 100%;
+  overflow: visible !important;
+  padding: 8px 4px 14px;
+  box-sizing: border-box;
+}
+
+#detail-gallery .gallery-item {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+#detail-gallery .gallery-item img {
+  display: block;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+#detail-gallery .gallery-item[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 700px) {
+  #detail-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 450px) {
+  #detail-gallery {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>
+</head>
+<body>
+  <header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="about.html" aria-label="Asih Nur Annisa - About">
+            <span>ASIH <em>NUR ANNISA</em></span>
+      <span class="brand-tag">PORTO</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Navigasi utama">
+      <a href="about.html" class="active">♙ About</a>
+      <a href="experience.html">▣ Experience</a>
+      <a href="projects.html">▧ Projects</a>
+      <a href="certificates.html">♙ Certificates</a>
+      <a href="contact.html">✉ Contact</a>
+    </nav>
+
+    <a class="nav-cta" href="contact.html">Hubungi Saya ↗</a>
+    <button class="menu-toggle" aria-expanded="false" aria-label="Buka menu">Menu</button>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Selected Works · Project Archive</span>
+      <h1 class="page-title">PROJECTS <span class="accent">& WORK</span></h1>
+      <p class="lead">
+        Kumpulan proyek akademik dan latihan mandiri yang menjadi bagian dari perjalanan saya
+        dalam administrasi, pengujian perangkat lunak, pengolahan data, dan pengembangan web.
+      </p>
+      <div class="hero-rule"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="project-intro">
+        <div>
+          <span class="mini-label">The Work Archive</span>
+          <h2 style="font-family:'Space Grotesk',sans-serif;font-size:26px;margin:7px 0">
+            Proyek yang Pernah Saya Kerjakan
+          </h2>
+          <p class="lead">Pilih proyek untuk melihat cerita, fitur, teknologi, dan dokumentasinya.</p>
+        </div>
+
+        <div class="project-count">
+          <strong id="project-count">05</strong>
+          <div style="font-size:10px">PROJECTS</div>
+        </div>
+      </div>
+
+      <div class="filter-row" aria-label="Filter proyek">
+        <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">Semua Proyek</button>
+        <button class="filter-btn" type="button" data-filter="qa" aria-pressed="false">QA & Testing</button>
+        <button class="filter-btn" type="button" data-filter="web" aria-pressed="false">Web Development</button>
+        <button class="filter-btn" type="button" data-filter="admin" aria-pressed="false">Administration</button>
+        <button class="filter-btn" type="button" data-filter="app" aria-pressed="false">Application</button>
+      </div>
+
+      <div class="three-col" id="project-grid">
+
+        <!-- PROJECT 01 -->
+        <article class="card project-card reveal" data-category="qa">
+          <div class="project-image">
+            <span class="project-number">PROJECT 01</span>
+            <img src="assets/images/project/project1.png"
+                 alt="Ilustrasi pengujian otomatis aplikasi e-Absensi"
+                 loading="lazy">
+          </div>
+
+          <div class="project-body">
+            <span class="mini-label">Final Project · Quality Assurance</span>
+            <h3>Automation Testing E-Absensi</h3>
+            <div class="project-meta">
+              <span>Tugas Akhir</span><span>2026</span>
+            </div>
+            <p class="project-description">
+              Implementasi Playwright untuk menguji fungsi aplikasi absensi berbasis web
+              melalui skenario pengujian dan laporan hasil otomatis.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Playwright</span>
+              <span class="tag white">JavaScript</span>
+              <span class="tag white">Black Box</span>
+            </div>
+            <div class="card-actions">
+              <button class="btn pink detail-btn" type="button" data-project="absensi">
+                Lihat Detail ↗
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 02 -->
+        <article class="card project-card reveal" data-category="web">
+          <div class="project-image">
+            <span class="project-number">PROJECT 02</span>
+            <img src="assets/images/project/project4.png"
+                 alt="Pratinjau proyek sistem survei SKAM"
+                 loading="lazy">
+          </div>
+
+          <div class="project-body">
+            <span class="mini-label">Academic Project · Information System</span>
+            <h3>Sistem Survei Kepuasan SKAM</h3>
+            <div class="project-meta">
+              <span>Proyek Akademik</span><span>Web</span>
+            </div>
+            <p class="project-description">
+              Sistem survei kepuasan pelayanan surat keterangan aktif mahasiswa
+              berbasis website, dengan halaman survei dan dashboard admin.
+            </p>
+            <div class="tag-list">
+              <span class="tag">CodeIgniter 3</span>
+              <span class="tag white">PHP</span>
+              <span class="tag white">MySQL</span>
+            </div>
+            <div class="card-actions">
+              <button class="btn pink detail-btn" type="button" data-project="skam">
+                Lihat Detail ↗
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 03 -->
+        <article class="card project-card reveal" data-category="admin">
+          <div class="project-image">
+            <span class="project-number">PROJECT 03</span>
+            <img src="assets/images/project/project6.png"
+                 alt="Ilustrasi workbook administrasi keuangan"
+                 loading="lazy">
+          </div>
+
+          <div class="project-body">
+            <span class="mini-label">Administration · Data Management</span>
+            <h3>Financial Administration Workbook</h3>
+            <div class="project-meta">
+              <span>Excel</span><span>Administration</span>
+            </div>
+            <p class="project-description">
+              Workbook untuk mencatat pemasukan dan pengeluaran, mengelompokkan transaksi,
+              menghitung saldo, dan menyusun rekap berkala.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Excel</span>
+              <span class="tag white">Data Entry</span>
+              <span class="tag white">Reporting</span>
+            </div>
+            <div class="card-actions">
+              <button class="btn pink detail-btn" type="button" data-project="financial">
+                Lihat Detail ↗
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 04 -->
+        <article class="card project-card reveal" data-category="web">
+          <div class="project-image">
+            <span class="project-number">PROJECT 04</span>
+            <img src="assets/images/project/project2.png"
+                 alt="Pratinjau website PT Bendi Car"
+                 loading="lazy">
+          </div>
+
+          <div class="project-body">
+            <span class="mini-label">Web Development</span>
+            <h3>PT Bendi Car</h3>
+            <div class="project-meta">
+              <span>Website</span><span>Academic Project</span>
+            </div>
+            <p class="project-description">
+              Proyek website rental mobil untuk mendokumentasikan fitur, halaman,
+              teknologi, dan alur penggunaan sesuai implementasi proyek.
+            </p>
+            <div class="tag-list">
+              <span class="tag">PHP</span>
+              <span class="tag white">MySQL</span>
+              <span class="tag white">HTML & CSS</span>
+            </div>
+            <div class="card-actions">
+              <button class="btn pink detail-btn" type="button" data-project="bendi">
+                Lihat Detail ↗
+              </button>
+            </div>
+          </div>
+        </article>
+
+       
+        <!-- PROJECT 06 -->
+        <article class="card project-card reveal" data-category="app">
+          <div class="project-image">
+            <span class="project-number">PROJECT 06</span>
+            <img src="assets/images/project/project3.png"
+                 alt="Pratinjau aplikasi Smart Kas Class"
+                 loading="lazy">
+          </div>
+
+          <div class="project-body">
+            <span class="mini-label">Application · Learning Project</span>
+            <h3>Smart Kas Class</h3>
+            <div class="project-meta">
+              <span>Application</span><span>Academic Project</span>
+            </div>
+            <p class="project-description">
+              Proyek aplikasi kas kelas untuk mendokumentasikan rancangan antarmuka
+              dan fitur yang telah dibuat.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Android Studio</span>
+              <span class="tag white">Application</span>
+            </div>
+            <div class="card-actions">
+              <button class="btn pink detail-btn" type="button" data-project="smartkas">
+                Lihat Detail ↗
+              </button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      
+    </div>
+  </section>
+</main>
+<!-- PROJECT DETAIL DIALOG -->
+<dialog class="detail-dialog" id="project-dialog" aria-labelledby="detail-title">
+  <div class="detail-top">
+    <strong>PROJECT FILE / DETAIL</strong>
+    <button class="detail-close" id="close-detail" type="button" aria-label="Tutup detail">×</button>
+  </div>
+
+  <div class="detail-content">
+    <span class="eyebrow" id="detail-category">PROJECT DETAIL</span>
+    <h2 id="detail-title">Nama Proyek</h2>
+    <p id="detail-description"></p>
+
+    <div class="tag-list" id="detail-tags"></div>
+
+    <img class="detail-cover"
+         id="detail-cover"
+         src="assets/images/project-placeholder.svg"
+         alt="Pratinjau proyek">
+
+    <h3>Tentang Proyek</h3>
+    <p id="detail-about"></p>
+
+    <div class="detail-columns">
+      <div class="detail-panel">
+        <h3>Fitur & Cakupan</h3>
+        <ul id="detail-features"></ul>
+      </div>
+
+      <div class="detail-panel">
+        <h3>Teknologi</h3>
+        <ul id="detail-tech"></ul>
+      </div>
+    </div>
+
+    <h3>Galeri Dokumentasi</h3>
+    
+
+    <div class="detail-gallery" id="detail-gallery"></div>
+    <p class="gallery-hint">Tip: klik gambar untuk memperbesar.</p>
+
+    <div class="detail-actions">
+      <a class="btn" id="detail-demo" href="#" target="_blank" rel="noopener" hidden>
+        Lihat Demo ↗
+      </a>
+
+      <a class="btn secondary" id="detail-repo" href="#" target="_blank" rel="noopener" hidden>
+        Lihat Repository ↗
+      </a>
+
+      <a class="btn secondary" id="detail-copyright" href="#" target="_blank" rel="noopener" hidden>
+        Dokumen Hak Cipta (PDF) ↗
+      </a>
+
+    </div>
+
+    <div class="detail-nav" aria-label="Navigasi proyek">
+      <button id="view-prev" type="button">← Proyek Sebelumnya</button>
+      <button id="view-next" type="button">Proyek Berikutnya →</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- SCREENSHOT LIGHTBOX -->
+<dialog class="image-lightbox" id="image-lightbox" aria-label="Pratinjau screenshot">
+  <div class="lightbox-bar">
+    <strong id="lightbox-title">Dokumentasi Proyek</strong>
+    <button class="detail-close" id="close-lightbox" type="button" aria-label="Tutup gambar">×</button>
+  </div>
+
+  <img class="lightbox-image" id="lightbox-image" src="" alt="">
+  <p class="lightbox-caption" id="lightbox-caption"></p>
+</dialog>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <div class="footer-brand">
+        ASIH <em>NUR ANNISA</em> <span class="brand-tag">PORTO</span>
+      </div>
+      <div class="footer-note">Information Technology  · Administration · Data Entry </div>
+    </div>
+
+    <div class="socials">
+      <a href="https://github.com/asihnurannisa" target="_blank" rel="noopener" aria-label="GitHub">GH</a>
+      <a href="mailto:asihnurannisa@gmail.com" aria-label="Email">✉</a>
+      <a href="contact.html" aria-label="Contact">↗</a>
+    </div>
+
+    <div class="footer-note">
+      © <span data-year></span> Asih Nur Annisa. 
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+
+<script>
+  /* DATA DETAIL PROYEK */
+  const projectData = {
+    absensi: {
+      title: "Automation Testing Aplikasi E-Absensi",
+      category: "FINAL PROJECT · QUALITY ASSURANCE",
+      description: "Implementasi automation testing menggunakan Playwright untuk pengujian fungsional aplikasi e-Absensi berbasis web.",
+      about: "Proyek ini membahas pengujian fungsional aplikasi e-Absensi menggunakan pendekatan Black Box Testing. Skenario pengujian dijalankan menggunakan Playwright dan JavaScript, kemudian hasilnya ditinjau melalui laporan pengujian.",
+      features: [
+        "Penyusunan skenario pengujian fungsional",
+        "Eksekusi pengujian menggunakan Playwright",
+        "Pemeriksaan hasil aktual dan hasil yang diharapkan",
+        "Dokumentasi status pengujian dan HTML Report"
+      ],
+      tech: ["Playwright", "JavaScript", "VS Code", "Black Box Testing"],
+      tags: ["Playwright", "JavaScript", "Functional Testing"],
+      cover: "assets/images/project/project1.png",
+      demo: "",
+      repo: "https://github.com/asihnurannisa/Automationtesting",
+      gallery: [
+        ["assets/images/project/project1-1.png", "Skenario pengujian"],
+        ["assets/images/project/project1-2.png", "Hasil pengujian"]
+      ]
+    },
+
+    skam: {
+      title: "Sistem Survei Kepuasan Pelayanan SKAM",
+      category: "ACADEMIC PROJECT · WEB DEVELOPMENT",
+      description: "Sistem survei kepuasan pelayanan surat keterangan aktif mahasiswa berbasis website.",
+      about: "Proyek ini dirancang untuk membantu pengumpulan tanggapan mahasiswa melalui penilaian dan komentar, serta menyediakan halaman admin untuk melihat hasil survei.",
+      features: [
+        "Halaman survei mahasiswa",
+        "Penilaian menggunakan skala rating",
+        "Kolom komentar responden",
+        "Dashboard admin dan ringkasan hasil survei"
+      ],
+      tech: ["CodeIgniter 3", "PHP", "MySQL", "HTML", "CSS", "JavaScript"],
+      tags: ["Website", "CodeIgniter 3", "MySQL"],
+      cover: "assets/images/project/project4.png",
+      demo: "",
+      repo: "https://github.com/asihnurannisa/SKAMVNELA",
+      gallery: [
+        ["assets/images/project/project4.png", ""],
+        ["assets/images/project/project4-1.png", "Halaman Dashboard"],
+        ["assets/images/project/project4-2.png", "Halaman Utama Penjelasanan Layanan"],
+        ["assets/images/project/project4-3.png", "Alur Pengajuan dan Kontak Layanan"],
+        ["assets/images/project/project4-4.png", "Halaman Survei"],
+        ["assets/images/project/project4-5.png", "Halaman Survei Saran dan Kritik"],
+        ["assets/images/project/project4-6.png", "Dashboard Admin"],
+        ["assets/images/project/project4-7.png", "Halaman Rekap Data Laporan Survei"],
+        ["assets/images/project/project4-8.png", "Download Pdf Data Laporan Survei"],
+        ["assets/images/project/project4-9.png", "Grafik hasil survei"],
+        ["assets/images/project/project4-10.png", "LeaderBoard dan Komentar Survei"],
+      ]
+    },
+
+    financial: {
+      title: "Financial Administration Workbook",
+      category: "ADMINISTRATION · DATA MANAGEMENT",
+      description: "Workbook Excel untuk pencatatan transaksi, penghitungan saldo, dan rekap administrasi.",
+      about: "Bagian ini menjelaskan workbook administrasi keuangan. Sesuaikan deskripsi, formula, dan contoh hasil dengan file Excel yang benar-benar sudah kamu kerjakan.",
+      features: [
+        "Pencatatan pemasukan dan pengeluaran",
+        "Pengelompokan transaksi",
+        "Perhitungan saldo",
+        "Rekap administrasi berkala"
+      ],
+      tech: ["Microsoft Excel", "Formula Excel", "Data Entry", "Spreadsheet Reporting"],
+      tags: ["Excel", "Financial Administration", "Reporting"],
+      cover: "assets/images/project/project6.png",
+      demo: "",
+      repo: "https://docs.google.com/spreadsheets/d/11Vioix4tPCjvyeWIn1IEUcuYAgKw2hQW/edit?usp=sharing&ouid=106775636703337041295&rtpof=true&sd=true",
+      gallery: [
+        ["assets/images/project/project6.png", ""],
+        ["assets/images/project/project6-1.png", "Ringkasan administrasi"],
+        ["assets/images/project/project6-2.png", "Master Data Barang "],
+        ["assets/images/project/project6-3.png", "Master Data Supplier"],
+        ["assets/images/project/project6-4.png", "Pencatatan Transasksi Barang Masuk "],
+        ["assets/images/project/project6-5.png", "Pencatatan Transasksi Barang Masuk"],
+        ["assets/images/project/project6-6.png", "Perhitungan Stock Overview"],
+        ["assets/images/project/project6-8.png", "Rekap Laporan Data Inventory "]
+      ]
+    },
+
+    bendi: {
+      title: "PT Bendi Car",
+      category: "WEB DEVELOPMENT",
+      description: "PT Bendi Car merupakan proyek pengembangan website rental mobil yang dibuat sebagai sarana penyediaan informasi layanan penyewaan kendaraan. Proyek ini menggunakan PHP sebagai bahasa pemrograman dan MySQL sebagai basis data untuk mendukung pengelolaan informasi pada website.",
+      about: "Proyek website rental mobil ini dapat dijelaskan lebih lanjut dengan menambahkan fitur yang benar-benar dibuat, peran yang dikerjakan, dan teknologi yang digunakan.",
+      features: [
+        "Menampilkan informasi dan daftar mobil.",
+        "Menyediakan halaman detail kendaraan.",
+        "Menampilkan informasi layanan rental mobil."
+      ],
+      tech: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
+      tags: ["Web Development", "PHP", "MySQL"],
+      cover: "assets/images/project/project2.png",
+      demo: "",
+      repo: "https://github.com/asihnurannisa/PT-Bendi-Car",
+      gallery: [
+        ["assets/images/project/project2.png", ""],
+        ["assets/images/project/project2-1.png", "Halaman Login Sebagai User atau Admin"],
+        ["assets/images/project/project2-2.png", "Halaman Dashboard"],
+        ["assets/images/project/project2-3.png", "Halaman Informasi Mobil"],
+        ["assets/images/project/project2-4.png", "Tampilan Form Booking Mobil "],
+        ["assets/images/project/project2-5.png", "Tampilan Tabel Informasi Booking"],
+        ["assets/images/project/project2-6.png", "Halaman Kontak Layanan"],
+        ["assets/images/project/project2-7.png", "Halaman Dashboard Admin"],
+        ["assets/images/project/project2-8.png", "Halaman Tabel Data Kendaraan Mobil"],
+        ["assets/images/project/project2-9.png", "Tabel Data Pemesanan Sewa Kendaraan"]
+      ]
+    },
+
+    
+    smartkas: {
+      title: "Smart Kas Class",
+      category: "APPLICATION · LEARNING PROJECT",
+      description: "Proyek pembelajaran Aplikasi kas kelas untuk membantu pencatatan dan pengelolaan keuangan kelas.",
+      about: "Smart Kas Class merupakan proyek pengembangan aplikasi kas kelas yang dirancang untuk mempermudah pencatatan pemasukan, pengeluaran, dan informasi keuangan kelas.",
+      features: [
+        "Pencatatan pemasukan dan pengeluaran kas.",
+        "Informasi saldo kas kelas.",
+        "Riwayat transaksi keuangan.",
+        "Tampilan antarmuka aplikasi yang sederhana dan mudah digunakan."
+      ],
+      tech: ["UI/UX", "Android Studio "],
+      tags: ["Application", "UI/UX"],
+      cover: "assets/images/project/project3.png",
+      demo: "",
+      repo: "",
+      copyright: "assets/documents/smart-kas-class/surat-hak-cipta.pdf",
+      gallery: [
+        ["assets/images/project/project3.png", ""],
+        ["assets/images/project/project3-2.png", "Halaman Login Bendahara"],
+        ["assets/images/project/project3-3.png", "Halaman Registrasi dan Dashboard"],
+        ["assets/images/project/project3-4.png", "Halaman Pemasukkan Uang Kas"],
+        ["assets/images/project/project3-5.png", "Halaman Pengeluaran Uang Kas"],
+        ["assets/images/project/project3-6.png", "Laporan Uang Kas dan Dashboard Siswa"]
+      ]
+    }
+  };
+    const dialog = document.getElementById("project-dialog");
+  const detailGallery = document.getElementById("detail-gallery");
+
+  const projectKeys = [
+    "absensi",
+    "skam",
+    "financial",
+    "bendi",
+    "smartkas"
+  ];
+
+  let currentProjectIndex = 0;
+
+  /* MEMBUAT DAFTAR FITUR DAN TEKNOLOGI */
+  function addListItems(id, items) {
+    const list = document.getElementById(id);
+    list.replaceChildren();
+
+    items.forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = item;
+      list.appendChild(li);
+    });
+  }
+
+  /* MEMBUAT TAG */
+  function addTags(items) {
+    const wrap = document.getElementById("detail-tags");
+    wrap.replaceChildren();
+
+    items.forEach((item, index) => {
+      const tag = document.createElement("span");
+      tag.className = index === 0 ? "tag" : "tag white";
+      tag.textContent = item;
+      wrap.appendChild(tag);
+    });
+  }
+
+  /* LINK DEMO, REPOSITORY, DAN DOKUMEN */
+  function setOptionalLink(id, url) {
+    const link = document.getElementById(id);
+
+    // Mendukung link web maupun file lokal seperti PDF
+    const valid = Boolean(
+      url && (/^https?:\/\//i.test(url) || !/^(javascript:|data:)/i.test(url))
+    );
+
+    link.hidden = !valid;
+
+    if (valid) {
+      link.href = url;
+    } else {
+      link.removeAttribute("href");
+    }
+  }
+
+  /* MEMBUKA DETAIL PROYEK */
+  function openProject(key) {
+    const data = projectData[key];
+
+    if (!data) return;
+
+    currentProjectIndex = projectKeys.indexOf(key);
+
+    document.getElementById("detail-category").textContent = data.category;
+    document.getElementById("detail-title").textContent = data.title;
+    document.getElementById("detail-description").textContent = data.description;
+    document.getElementById("detail-about").textContent = data.about;
+
+    const cover = document.getElementById("detail-cover");
+    cover.src = data.cover;
+    cover.alt = "Pratinjau " + data.title;
+
+    addTags(data.tags);
+    addListItems("detail-features", data.features);
+    addListItems("detail-tech", data.tech);
+
+    detailGallery.replaceChildren();
+
+    data.gallery.forEach(([src, caption]) => {
+      const figure = document.createElement("figure");
+      figure.className = "gallery-item";
+
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = caption + " — " + data.title;
+      img.loading = "lazy";
+      img.tabIndex = 0;
+      img.setAttribute("role", "button");
+      img.setAttribute("aria-label", "Perbesar screenshot: " + caption);
+
+      /* Screenshot yang belum tersedia disembunyikan */
+      
+      function showImage() {
+        if (!img.naturalWidth) return;
+
+        const lightbox = document.getElementById("image-lightbox");
+
+        document.getElementById("lightbox-image").src = src;
+        document.getElementById("lightbox-image").alt = caption + " — " + data.title;
+        document.getElementById("lightbox-title").textContent = data.title;
+        document.getElementById("lightbox-caption").textContent = caption;
+
+        lightbox.showModal();
+      }
+
+      img.addEventListener("click", showImage);
+
+      img.addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          showImage();
+        }
+      });
+
+      const figcaption = document.createElement("figcaption");
+      figcaption.textContent = caption;
+
+      figure.append(img, figcaption);
+      detailGallery.appendChild(figure);
+    });
+
+    setOptionalLink("detail-demo", data.demo);
+    setOptionalLink("detail-repo", data.repo);
+    setOptionalLink("detail-copyright", data.copyright || "");
+
+    if (!dialog.open) {
+      dialog.showModal();
+    }
+  }
+
+  /* TOMBOL LIHAT DETAIL */
+  document.querySelectorAll("[data-project]").forEach(button => {
+    button.addEventListener("click", () => {
+      openProject(button.dataset.project);
+    });
+  });
+
+  /* TUTUP DETAIL */
+  document.getElementById("close-detail").addEventListener("click", () => {
+    dialog.close();
+  });
+
+  dialog.addEventListener("click", event => {
+    if (event.target === dialog) {
+      dialog.close();
+    }
+  });
+
+  /* NAVIGASI PROYEK SEBELUMNYA */
+  document.getElementById("view-prev").addEventListener("click", () => {
+    const prevIndex =
+      (currentProjectIndex - 1 + projectKeys.length) % projectKeys.length;
+
+    openProject(projectKeys[prevIndex]);
+  });
+
+  /* NAVIGASI PROYEK BERIKUTNYA */
+  document.getElementById("view-next").addEventListener("click", () => {
+    const nextIndex =
+      (currentProjectIndex + 1) % projectKeys.length;
+
+    openProject(projectKeys[nextIndex]);
+  });
+
+  /* LIGHTBOX SCREENSHOT */
+  const imageLightbox = document.getElementById("image-lightbox");
+
+  document.getElementById("close-lightbox").addEventListener("click", () => {
+    imageLightbox.close();
+  });
+
+  imageLightbox.addEventListener("click", event => {
+    if (event.target === imageLightbox) {
+      imageLightbox.close();
+    }
+  });
+
+  /* FILTER PROYEK */
+  const filterButtons = document.querySelectorAll("[data-filter]");
+  const projectCards = document.querySelectorAll(".project-card");
+
+  filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const filter = button.dataset.filter;
+
+      filterButtons.forEach(item => {
+        const active = item === button;
+
+        item.classList.toggle("active", active);
+        item.setAttribute("aria-pressed", String(active));
+      });
+
+      projectCards.forEach(card => {
+        card.hidden =
+          filter !== "all" && card.dataset.category !== filter;
+      });
+
+      const visibleCount =
+        [...projectCards].filter(card => !card.hidden).length;
+
+      document.getElementById("project-count").textContent =
+        String(visibleCount).padStart(2, "0");
+    });
+  });
+
+  /* TAHUN FOOTER */
+  document.querySelectorAll("[data-year]").forEach(element => {
+    element.textContent = new Date().getFullYear();
+  });
+</script>
+
+</body>
+</html>

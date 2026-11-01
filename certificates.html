@@ -1,0 +1,1313 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Certificates | Asih Nur Annisa</title>
+  <meta name="description" content="Kumpulan sertifikat pelatihan Asih Nur Annisa dalam bidang teknologi informasi, kecerdasan buatan, dan keterampilan digital.">
+  <meta name="theme-color" content="#fff7fb">
+
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    /* =========================
+       CERTIFICATE PAGE
+    ========================= */
+
+    .certificate-intro {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 30px;
+    }
+
+    .certificate-intro .lead {
+      max-width: 650px;
+      margin-bottom: 0;
+    }
+
+    .certificate-total {
+      flex-shrink: 0;
+      padding: 13px 18px;
+      border: 1px solid #f0d1df;
+      border-radius: 14px;
+      background: #fff0f6;
+      color: #75465d;
+    }
+
+    .certificate-total strong {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 27px;
+      line-height: 1.2;
+    }
+
+    .certificate-total span {
+      display: block;
+      margin-top: 4px;
+      font-size: 11px;
+    }
+
+    .certificate-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .certificate-card {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      height: 100%;
+      padding: 16px;
+      overflow: hidden;
+      border: 1px solid #f0dce5;
+      border-radius: 17px;
+      background: #ffffff;
+      box-shadow: 0 5px 20px rgba(113, 63, 85, .045);
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+
+    .certificate-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(113, 63, 85, .10);
+    }
+
+    /* PDF PREVIEW */
+
+    .certificate-preview {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      aspect-ratio: 1.414 / 1;
+      overflow: hidden;
+      border: 1px solid #f0dce5;
+      border-radius: 11px;
+      background: #fff7fb;
+    }
+
+    .certificate-pdf-preview {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #fff7fb;
+      pointer-events: none;
+    }
+
+    .certificate-preview-label {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      z-index: 2;
+      padding: 6px 9px;
+      border: 1px solid #f0d1df;
+      border-radius: 7px;
+      background: rgba(255, 255, 255, .94);
+      color: #75465d;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      pointer-events: none;
+    }
+
+    .certificate-preview-fallback {
+      display: none;
+      padding: 20px;
+      text-align: center;
+      color: #75465d;
+    }
+
+    .certificate-preview-fallback .pdf-icon {
+      display: grid;
+      place-items: center;
+      width: 58px;
+      height: 68px;
+      margin: 0 auto 12px;
+      border: 1px solid #e9b5cc;
+      border-radius: 9px;
+      background: #ffffff;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .06em;
+    }
+
+    .certificate-preview-fallback strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .certificate-preview-fallback span {
+      display: block;
+      margin-top: 5px;
+      color: #947c88;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    /* CERTIFICATE INFORMATION */
+
+    .certificate-information {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      min-width: 0;
+      padding: 19px 3px 3px;
+    }
+
+    .certificate-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .certificate-meta .eyebrow {
+      margin: 0;
+    }
+
+    .certificate-date {
+      color: #947c88;
+      font-size: 11px;
+    }
+
+    .certificate-information h3 {
+      margin: 0 0 8px;
+      color: #49313d;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+
+    .certificate-information .company {
+      margin-bottom: 10px;
+      color: #bd668e;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .certificate-description {
+      margin: 0 0 18px;
+      color: #786570;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .certificate-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: auto;
+      padding-top: 6px;
+    }
+
+    .certificate-actions button,
+    .certificate-actions a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 41px;
+      padding: 10px 13px;
+      border: 1px solid #e9b5cc;
+      border-radius: 9px;
+      font: inherit;
+      font-size: 11px;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+
+    .certificate-view-btn {
+      flex: 1;
+      background: #f5a8c8;
+      color: #49313d;
+    }
+
+    .certificate-view-btn:hover {
+      background: #ef8eb7;
+      transform: translateY(-1px);
+    }
+
+    .certificate-open-btn {
+      background: #ffffff;
+      color: #75465d;
+    }
+
+    .certificate-open-btn:hover {
+      background: #fff0f6;
+    }
+
+    .certificate-actions button:focus-visible,
+    .certificate-actions a:focus-visible,
+    .certificate-modal-close:focus-visible {
+      outline: 3px solid #e98bb5;
+      outline-offset: 3px;
+    }
+
+    /* CERTIFICATE FOOTNOTE */
+
+    .certificate-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 27px;
+      padding: 17px 19px;
+      border: 1px solid #f0dce5;
+      border-radius: 12px;
+      background: #fff7fb;
+    }
+
+    .certificate-note-icon {
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      width: 31px;
+      height: 31px;
+      border-radius: 9px;
+      background: #fce5ef;
+      color: #a54e78;
+      font-weight: 800;
+    }
+
+    .certificate-note p {
+      margin: 0;
+      color: #786570;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    /* PDF VIEWER MODAL */
+
+    .certificate-modal {
+      width: min(1050px, calc(100% - 28px));
+      height: min(850px, 90vh);
+      max-width: none;
+      max-height: 90vh;
+      padding: 0;
+      overflow: hidden;
+      border: 1px solid #edcddd;
+      border-radius: 17px;
+      background: #ffffff;
+      color: #49313d;
+      box-shadow: 0 24px 80px rgba(73, 49, 61, .22);
+    }
+
+    .certificate-modal::backdrop {
+      background: rgba(54, 34, 45, .68);
+      backdrop-filter: blur(5px);
+    }
+
+    .certificate-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      min-height: 67px;
+      padding: 13px 17px;
+      border-bottom: 1px solid #f0dce5;
+      background: #fff7fb;
+    }
+
+    .certificate-modal-heading {
+      min-width: 0;
+    }
+
+    .certificate-modal-heading strong {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    .certificate-modal-heading span {
+      display: block;
+      margin-top: 3px;
+      color: #947c88;
+      font-size: 10px;
+    }
+
+    .certificate-modal-controls {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .certificate-modal-open {
+      padding: 9px 12px;
+      border: 1px solid #e9b5cc;
+      border-radius: 8px;
+      background: #f5a8c8;
+      color: #49313d;
+      font-size: 11px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .certificate-modal-close {
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border: 1px solid #e9b5cc;
+      border-radius: 8px;
+      background: #ffffff;
+      color: #75465d;
+      font-size: 21px;
+      cursor: pointer;
+    }
+
+    .certificate-modal-close:hover {
+      background: #fff0f6;
+    }
+
+    .certificate-modal-body {
+      height: calc(100% - 67px);
+      background: #f5f0f3;
+    }
+
+    .certificate-modal-frame {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #ffffff;
+    }
+
+    .certificate-modal-empty {
+      display: none;
+      height: 100%;
+      padding: 30px;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #75465d;
+    }
+
+    .certificate-modal-empty p {
+      max-width: 400px;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .certificate-modal-empty code {
+      overflow-wrap: anywhere;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 760px) {
+      .certificate-intro {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 17px;
+      }
+
+      .certificate-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 17px;
+      }
+
+      .certificate-card {
+        padding: 13px;
+      }
+
+      .certificate-preview {
+        aspect-ratio: 1.414 / 1;
+      }
+
+      .certificate-information {
+        padding-top: 16px;
+      }
+
+      .certificate-modal {
+        width: calc(100% - 16px);
+        height: 92vh;
+        max-height: 92vh;
+        border-radius: 12px;
+      }
+
+      .certificate-modal-header {
+        padding: 10px;
+        gap: 8px;
+      }
+
+      .certificate-modal-heading strong {
+        font-size: 12px;
+      }
+
+      .certificate-modal-open {
+        padding: 9px;
+        font-size: 10px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .certificate-meta {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .certificate-actions {
+        flex-direction: column;
+      }
+
+      .certificate-actions button,
+      .certificate-actions a {
+        width: 100%;
+      }
+
+      .certificate-modal-heading span {
+        display: none;
+      }
+
+      .certificate-modal-controls {
+        gap: 5px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .certificate-card,
+      .certificate-actions button,
+      .certificate-actions a {
+        transition: none;
+      }
+
+      .certificate-card:hover,
+      .certificate-actions button:hover,
+      .certificate-actions a:hover {
+        transform: none;
+      }
+    }
+    
+/* FIX: ALIGNMENT KARTU SERTIFIKAT */
+.certificate-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  align-items: stretch;
+  gap: 24px;
+  width: 100%;
+}
+
+.certificate-grid .certificate-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.certificate-grid .certificate-information {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  width: 100%;
+  min-width: 0;
+  padding: 19px 3px 3px;
+  text-align: left;
+}
+
+.certificate-grid .certificate-meta {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+}
+
+.certificate-grid .certificate-information h3,
+.certificate-grid .certificate-information .company,
+.certificate-grid .certificate-information .certificate-description {
+  width: 100%;
+  text-align: left;
+}
+
+.certificate-grid .certificate-actions {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+.certificate-grid .certificate-preview {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+@media (max-width: 760px) {
+  .certificate-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="about.html" aria-label="Asih Nur Annisa - About">
+     
+      <span>ASIH <em>NUR ANNISA</em></span>
+      <span class="brand-tag">PORTO</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Navigasi utama">
+      <a href="about.html">♙ About</a>
+      <a href="experience.html">▣ Experience</a>
+      <a href="projects.html">▧ Projects</a>
+      <a href="certificates.html" class="active" aria-current="page">♙ Certificates</a>
+      <a href="contact.html">✉ Contact</a>
+    </nav>
+
+    <a class="nav-cta" href="contact.html">Hubungi Saya ↗</a>
+
+    <button
+      class="menu-toggle"
+      aria-expanded="false"
+      aria-label="Buka menu"
+      type="button"
+    >
+      Menu
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">CERTIFICATIONS & LEARNING</span>
+
+      <h1 class="page-title">
+        CERTIFICATES <span class="accent">& LEARNING</span>
+      </h1>
+
+      <p class="lead">
+        Kumpulan pelatihan dan sertifikat yang saya ikuti untuk memperluas
+        pengetahuan dalam teknologi informasi, kecerdasan buatan, dan
+        keterampilan digital.
+      </p>
+
+      <div class="hero-rule"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="certificate-intro">
+        <div>
+          <span class="eyebrow">MY LEARNING JOURNEY</span>
+          <h2 class="section-title">Sertifikat & Pelatihan</h2>
+          <p class="lead">
+            Pilih sertifikat untuk melihat dokumen PDF secara langsung.
+          </p>
+        </div>
+
+        <div class="certificate-total">
+          <strong>10</strong>
+          <span>Daftar sertifikat</span>
+        </div>
+      </div>
+
+      <div class="certificate-grid">
+
+        <!-- sertifikat -->
+
+        <article class="card certificate-card reveal">
+          <div class="certificate-preview">
+            <span class="certificate-preview-label">PDF CERTIFICATE</span>
+
+            <iframe
+              class="certificate-pdf-preview"
+              src="assets/certificates/hplive.pdf#toolbar=0&amp;navpanes=0&amp;scrollbar=0&amp;view=FitH"
+              title="Pratinjau sertifikat Introduction to Artificial Intelligence"
+              loading="lazy"
+              tabindex="-1"
+              aria-hidden="true"
+            ></iframe>
+          </div>
+
+          <div class="certificate-information">
+            <div class="certificate-meta">
+              <span class="eyebrow">Learning Certificate</span>
+              <span class="certificate-date">24 Oktober 2026</span>
+            </div>
+
+            <h3>Critical Thinking in the AI Era</h3>
+            <div class="company">HP LIFE</div>
+
+            <p class="certificate-description">
+              Pelatihan pengembangan kemampuan berpikir kritis dalam mengevaluasi informasi dan mengambil keputusan di era AI.
+            </p>
+
+            <div class="certificate-actions">
+              <button
+                class="certificate-view-btn"
+                type="button"
+                data-certificate-open
+                data-title="Critical Thinking in the AI Era"
+                data-pdf="assets/certificates/hplive.pdf"
+              >
+                Lihat Sertifikat ↗
+              </button>
+
+              <a
+                class="certificate-open-btn"
+                href="assets/certificates/hplive.pdf"
+                target="_blank"
+                rel="noopener"
+              >
+                Buka PDF
+              </a>
+            </div>
+          </div>
+        </article>
+
+
+        <article class="card certificate-card reveal">
+          <div class="certificate-preview">
+            <span class="certificate-preview-label">PDF CERTIFICATE</span>
+
+            <iframe
+              class="certificate-pdf-preview"
+              src="assets/certificates/bsn.pdf#toolbar=0&amp;navpanes=0&amp;scrollbar=0&amp;view=FitH"
+              title="Pratinjau sertifikat Introduction to Artificial Intelligence"
+              loading="lazy"
+              tabindex="-1"
+              aria-hidden="true"
+            ></iframe>
+          </div>
+
+          <div class="certificate-information">
+            <div class="certificate-meta">
+              <span class="eyebrow">Learning Certificate</span>
+              <span class="certificate-date">24 Oktober 2026</span>
+            </div>
+
+            <h3>Sistem Manajemen Keselamatan dan Kesehatan Kerja Berbasis SNI ISO 45001:2018</h3>
+            <div class="company">Badan Standardisasi Nasional (BSN)</div>
+
+            <p class="certificate-description">
+              Pelatihan penerapan sistem manajemen keselamatan dan kesehatan kerja sesuai standar SNI ISO 45001:2018 dengan predikat Sangat Baik.
+            </p>
+
+            <div class="certificate-actions">
+              <button
+                class="certificate-view-btn"
+                type="button"
+                data-certificate-open
+                data-title="Sistem Manajemen Keselamatan dan Kesehatan Kerja Berbasis SNI ISO 45001:2018"
+                data-pdf="assets/certificates/bsn.pdf"
+              >
+                Lihat Sertifikat ↗
+              </button>
+
+              <a
+                class="certificate-open-btn"
+                href="assets/certificates/bsn.pdf"
+                target="_blank"
+                rel="noopener"
+              >
+                Buka PDF
+              </a>
+            </div>
+          </div>
+        </article>
+
+
+        
+        <article class="card certificate-card reveal">
+          <div class="certificate-preview">
+            <span class="certificate-preview-label">PDF CERTIFICATE</span>
+
+            <iframe
+              class="certificate-pdf-preview"
+              src="assets/certificates/ai.pdf#toolbar=0&amp;navpanes=0&amp;scrollbar=0&amp;view=FitH"
+              title="Pratinjau sertifikat Introduction to Artificial Intelligence"
+              loading="lazy"
+              tabindex="-1"
+              aria-hidden="true"
+            ></iframe>
+          </div>
+
+          <div class="certificate-information">
+            <div class="certificate-meta">
+              <span class="eyebrow">Learning Certificate</span>
+              <span class="certificate-date">29 Oktober 2026</span>
+            </div>
+
+            <h3>Kecerdasan Artifisial No-Code Studio</h3>
+            <div class="company">BBLSDM Komdigi Medan – Digital Talent Scholarship 2026</div>
+
+            <p class="certificate-description">
+              Pelatihan pembuatan aplikasi dan website tanpa coding dengan memanfaatkan teknologi kecerdasan artifisial.
+            </p>
+
+            <div class="certificate-actions">
+              <button
+                class="certificate-view-btn"
+                type="button"
+                data-certificate-open
+                data-title="Kecerdasan Artifisial No-Code Studio"
+                data-pdf="assets/certificates/ai.pdf"
+              >
+                Lihat Sertifikat ↗
+              </button>
+
+              <a
+                class="certificate-open-btn"
+                href="assets/certificates/ai.pdf"
+                target="_blank"
+                rel="noopener"
+              >
+                Buka PDF
+              </a>
+            </div>
+          </div>
+        </article>
+
+
+        <article class="card certificate-card reveal">
+          <div class="certificate-preview">
+            <span class="certificate-preview-label">PDF CERTIFICATE</span>
+
+            <iframe
+              class="certificate-pdf-preview"
+              src="assets/certificates/aplikasikantor.pdf#toolbar=0&amp;navpanes=0&amp;scrollbar=0&amp;view=FitH"
+              title="Pratinjau sertifikat Introduction to Artificial Intelligence"
+              loading="lazy"
+              tabindex="-1"
+              aria-hidden="true"
+            ></iframe>
+          </div>
+
+          <div class="certificate-information">
+            <div class="certificate-meta">
+              <span class="eyebrow">Learning Certificate</span>
+              <span class="certificate-date">27 Oktober 2026</span>
+            </div>
+
+            <h3>Cara Mudah Menggunakan Aplikasi Perkantoran Online</h3>
+            <div class="company">Pusat Pengembangan Literasi Digital – Digital Talent Scholarship 2026</div>
+
+            <p class="certificate-description">
+              Pelatihan penggunaan aplikasi perkantoran online untuk mendukung pekerjaan administrasi dan pengelolaan dokumen.
+            </p>
+
+            <div class="certificate-actions">
+              <button
+                class="certificate-view-btn"
+                type="button"
+                data-certificate-open
+                data-title="Cara Mudah Menggunakan Aplikasi Perkantoran Online"
+                data-pdf="assets/certificates/aplikasikantor.pdf"
+              >
+                Lihat Sertifikat ↗
+              </button>
+
+              <a
+                class="certificate-open-btn"
+                href="assets/certificates/aplikasikantor.pdf"
+                target="_blank"
+                rel="noopener"
+              >
+                Buka PDF
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card certificate-card reveal">
+          <div class="certificate-preview">
+            <span class="certificate-preview-label">PDF CERTIFICATE</span>
+
+            <iframe
+              class="certificate-pdf-preview"
+              src="assets/certificates/basic-excel.pdf#toolbar=0&amp;navpanes=0&amp;scrollbar=0&amp;view=FitH"
+              title="Pratinjau sertifikat Introduction to Artificial Intelligence"
+              loading="lazy"
+              tabindex="-1"
+              aria-hidden="true"
+            ></iframe>
+          </div>
+
+          <div class="certificate-information">
+            <div class="certificate-meta">
+              <span class="eyebrow">Learning Certificate</span>
+              <span class="certificate-date">26 Oktober 2026</span>
+            </div>
+
+            <h3>Basic Excel</h3>
+            <div class="company">Bisa.AI Academy</div>
+
+            <p class="certificate-description">
+              Pelatihan dasar penggunaan Microsoft Excel untuk pengolahan dan pengelolaan data.
+            </p>
+
+            <div class="certificate-actions">
+              <button
+                class="certificate-view-btn"
+                type="button"
+                data-certificate-open
+                data-title="basic-excel"
+                data-pdf="assets/certificates/basic-excel.pdf"
+              >
+                Lihat Sertifikat ↗
+              </button>
+
+              <a
+                class="certificate-open-btn"
+                href="assets/certificates/basic-excel.pdf"
+                target="_blank"
+                rel="noopener"
+              >
+                Buka PDF
+              </a>
+            </div>
+          </div>
+        </article>
+
+
+
+        <article class="card certificate-card reveal">
+          <div class="certificate-preview">
+            <span class="certificate-preview-label">PDF CERTIFICATE</span>
+
+            <iframe
+              class="certificate-pdf-preview"
+              src="assets/certificates/website-prompting.pdf#toolbar=0&amp;navpanes=0&amp;scrollbar=0&amp;view=FitH"
+              title="Pratinjau sertifikat Introduction to Artificial Intelligence"
+              loading="lazy"
+              tabindex="-1"
+              aria-hidden="true"
+            ></iframe>
+          </div>
+
+          <div class="certificate-information">
+            <div class="certificate-meta">
+              <span class="eyebrow">Learning Certificate</span>
+              <span class="certificate-date">27 Oktober 2026</span>
+            </div>
+
+            <h3>Pembuatan Website Lengkap dengan Prompting</h3>
+            <div class="company">Bisa.AI Academy</div>
+
+            <p class="certificate-description">
+              Pelatihan pembuatan website dengan memanfaatkan teknik prompting berbasis AI.
+            </p>
+
+            <div class="certificate-actions">
+              <button
+                class="certificate-view-btn"
+                type="button"
+                data-certificate-open
+                data-title="Pembuatan Website Lengkap dengan Prompting"
+                data-pdf="assets/certificates/website-prompting.pdf"
+              >
+                Lihat Sertifikat ↗
+              </button>
+
+              <a
+                class="certificate-open-btn"
+                href="assets/certificates/website-prompting.pdf"
+                target="_blank"
+                rel="noopener"
+              >
+                Buka PDF
+              </a>
+            </div>
+          </div>
+        </article>
+
+
+      
+
+        <!-- CERTIFICATE 1 -->
+        <article class="card certificate-card reveal">
+          <div class="certificate-preview">
+            <span class="certificate-preview-label">PDF CERTIFICATE</span>
+
+            <iframe
+              class="certificate-pdf-preview"
+              src="assets/certificates/introduction-to-ai.pdf#toolbar=0&amp;navpanes=0&amp;scrollbar=0&amp;view=FitH"
+              title="Pratinjau sertifikat Introduction to Artificial Intelligence"
+              loading="lazy"
+              tabindex="-1"
+              aria-hidden="true"
+            ></iframe>
+          </div>
+
+          <div class="certificate-information">
+            <div class="certificate-meta">
+              <span class="eyebrow">Learning Certificate</span>
+              <span class="certificate-date">19 Mei 2026</span>
+            </div>
+
+            <h3>Introduction to Artificial Intelligence</h3>
+            <div class="company">IBM SkillsBuild</div>
+
+            <p class="certificate-description">
+              Pelatihan pengenalan konsep kecerdasan buatan.
+            </p>
+
+            <div class="certificate-actions">
+              <button
+                class="certificate-view-btn"
+                type="button"
+                data-certificate-open
+                data-title="Introduction to Artificial Intelligence"
+                data-pdf="assets/certificates/introduction-to-ai.pdf"
+              >
+                Lihat Sertifikat ↗
+              </button>
+
+              <a
+                class="certificate-open-btn"
+                href="assets/certificates/introduction-to-ai.pdf"
+                target="_blank"
+                rel="noopener"
+              >
+                Buka PDF
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- CERTIFICATE 2 -->
+        <article class="card certificate-card reveal">
+          <div class="certificate-preview">
+            <span class="certificate-preview-label">PDF CERTIFICATE</span>
+
+            <iframe
+              class="certificate-pdf-preview"
+              src="assets/certificates/generative-ai-software-development.pdf#toolbar=0&amp;navpanes=0&amp;scrollbar=0&amp;view=FitH"
+              title="Pratinjau sertifikat Use Generative AI for Software Development"
+              loading="lazy"
+              tabindex="-1"
+              aria-hidden="true"
+            ></iframe>
+          </div>
+
+          <div class="certificate-information">
+            <div class="certificate-meta">
+              <span class="eyebrow">Learning Certificate</span>
+              <span class="certificate-date">19 Agustus 2025</span>
+            </div>
+
+            <h3>Use Generative AI for Software Development</h3>
+            <div class="company">IBM SkillsBuild / Hacktiv8</div>
+
+            <p class="certificate-description">
+              Pelatihan penggunaan generative AI untuk mendukung proses
+              pengembangan perangkat lunak.
+            </p>
+
+            <div class="certificate-actions">
+              <button
+                class="certificate-view-btn"
+                type="button"
+                data-certificate-open
+                data-title="Use Generative AI for Software Development"
+                data-pdf="assets/certificates/generative-ai-software-development.pdf"
+              >
+                Lihat Sertifikat ↗
+              </button>
+
+              <a
+                class="certificate-open-btn"
+                href="assets/certificates/generative-ai-software-development.pdf"
+                target="_blank"
+                rel="noopener"
+              >
+                Buka PDF
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- CERTIFICATE 3 -->
+        <article class="card certificate-card reveal">
+          <div class="certificate-preview">
+            <span class="certificate-preview-label">PDF CERTIFICATE</span>
+
+            <iframe
+              class="certificate-pdf-preview"
+              src="assets/certificates/Granite-Models.pdf#toolbar=0&amp;navpanes=0&amp;scrollbar=0&amp;view=FitH"
+              title="Pratinjau sertifikat Data Classification and Summarization"
+              loading="lazy"
+              tabindex="-1"
+              aria-hidden="true"
+            ></iframe>
+          </div>
+
+          <div class="certificate-information">
+            <div class="certificate-meta">
+              <span class="eyebrow">Learning Certificate</span>
+              <span class="certificate-date">21 Agustus 2026</span>
+            </div>
+
+            <h3>Granite Models for Software Development</h3>
+            <div class="company">IBM SkillsBuild / Hacktiv8</div>
+
+            <p class="certificate-description">
+              Pelatihan terkait klasifikasi dan peringkasan data.
+            </p>
+
+            <div class="certificate-actions">
+              <button
+                class="certificate-view-btn"
+                type="button"
+                data-certificate-open
+                data-title="Data Classification and Summarization"
+                data-pdf="assets/certificates/Granite-Models.pdf"
+              >
+                Lihat Sertifikat ↗
+              </button>
+
+              <a
+                class="certificate-open-btn"
+                href="assets/certificates/Granite-Models.pdf"
+                target="_blank"
+                rel="noopener"
+              >
+                Buka PDF
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- CERTIFICATE 4 -->
+        <article class="card certificate-card reveal">
+          <div class="certificate-preview">
+            <span class="certificate-preview-label">PDF CERTIFICATE</span>
+
+            <iframe
+              class="certificate-pdf-preview"
+              src="assets/certificates/code-generations-optimization.pdf#toolbar=0&amp;navpanes=0&amp;scrollbar=0&amp;view=FitH"
+              title="Pratinjau sertifikat Code Generations and Optimization"
+              loading="lazy"
+              tabindex="-1"
+              aria-hidden="true"
+            ></iframe>
+          </div>
+
+          <div class="certificate-information">
+            <div class="certificate-meta">
+              <span class="eyebrow">Learning Certificate</span>
+              <span class="certificate-date">21 Agustus 2025</span>
+            </div>
+
+            <h3>Code Generations and Optimization</h3>
+            <div class="company">IBM SkillsBuild / Hacktiv8</div>
+
+            <p class="certificate-description">
+              Pelatihan terkait generasi kode dan optimasi.
+            </p>
+
+            <div class="certificate-actions">
+              <button
+                class="certificate-view-btn"
+                type="button"
+                data-certificate-open
+                data-title="Code Generations and Optimization"
+                data-pdf="assets/certificates/code-generations-optimization.pdf"
+              >
+                Lihat Sertifikat ↗
+              </button>
+
+              <a
+                class="certificate-open-btn"
+                href="assets/certificates/code-generations-optimization.pdf"
+                target="_blank"
+                rel="noopener"
+              >
+                Buka PDF
+              </a>
+            </div>
+          </div>
+        </article>
+
+
+      </div>
+
+
+    </div>
+  </section>
+</main>
+
+<!-- PDF VIEWER MODAL -->
+<dialog class="certificate-modal" id="certificateModal">
+  <div class="certificate-modal-header">
+    <div class="certificate-modal-heading">
+      <strong id="certificateModalTitle">Detail Sertifikat</strong>
+      <span>Dokumen sertifikat dalam format PDF</span>
+    </div>
+
+    <div class="certificate-modal-controls">
+      <a
+        class="certificate-modal-open"
+        id="certificateModalOpen"
+        href="#"
+        target="_blank"
+        rel="noopener"
+      >
+        Buka Tab ↗
+      </a>
+
+      <button
+        class="certificate-modal-close"
+        type="button"
+        id="certificateModalClose"
+        aria-label="Tutup sertifikat"
+      >
+        &times;
+      </button>
+    </div>
+  </div>
+
+  <div class="certificate-modal-body" id="certificateModalBody">
+    <iframe
+      class="certificate-modal-frame"
+      id="certificateModalFrame"
+      title="Dokumen PDF sertifikat"
+    ></iframe>
+
+    <div class="certificate-modal-empty" id="certificateModalEmpty">
+      <p>
+        PDF belum dapat ditampilkan. Periksa kembali lokasi file sertifikat
+        dan pastikan file tersebut sudah tersedia di folder website.
+        Kamu juga bisa menggunakan tombol <strong>Buka Tab</strong>.
+      </p>
+    </div>
+  </div>
+</dialog>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <div class="footer-brand">
+        ASIH <em>NUR ANNISA</em>
+        <span class="brand-tag">PORTO</span>
+      </div>
+
+      <div class="footer-note">
+        Information Technology  · Administration · Data Entry
+      </div>
+    </div>
+
+    <div class="socials">
+      <a
+        href="https://github.com/asihnurannisa"
+        target="_blank"
+        rel="noopener"
+        aria-label="GitHub"
+      >GH</a>
+
+      <a
+        href="mailto:asihnurannisa@gmail.com"
+        aria-label="Email"
+      >✉</a>
+
+      <a href="projects.html" aria-label="Projects">▣</a>
+    </div>
+
+    <div class="footer-note">
+      © <span data-year></span> Asih Nur Annisa. 
+    </div>
+  </div>
+</footer>
+
+<script>
+  (() => {
+    const modal = document.getElementById('certificateModal');
+    const modalTitle = document.getElementById('certificateModalTitle');
+    const modalFrame = document.getElementById('certificateModalFrame');
+    const modalOpen = document.getElementById('certificateModalOpen');
+    const modalClose = document.getElementById('certificateModalClose');
+    const modalBody = document.getElementById('certificateModalBody');
+    const modalEmpty = document.getElementById('certificateModalEmpty');
+
+    if (
+      !modal ||
+      !modalTitle ||
+      !modalFrame ||
+      !modalOpen ||
+      !modalClose ||
+      !modalBody ||
+      !modalEmpty
+    ) {
+      return;
+    }
+
+    document.querySelectorAll('[data-certificate-open]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const pdfPath = button.dataset.pdf;
+        const title = button.dataset.title || 'Detail Sertifikat';
+
+        if (!pdfPath) return;
+
+        modalTitle.textContent = title;
+        modalOpen.href = pdfPath;
+        modalEmpty.style.display = 'none';
+        modalFrame.style.display = 'block';
+
+        modalFrame.src = pdfPath + '#toolbar=1&navpanes=0&view=FitH';
+
+        if (typeof modal.showModal === 'function') {
+          modal.showModal();
+        } else {
+          window.open(pdfPath, '_blank', 'noopener');
+        }
+      });
+    });
+
+    modalClose.addEventListener('click', () => {
+      modal.close();
+    });
+
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        modal.close();
+      }
+    });
+
+    modal.addEventListener('close', () => {
+      modalFrame.src = 'about:blank';
+      modalFrame.style.display = 'block';
+      modalEmpty.style.display = 'none';
+    });
+
+    /*
+      Jika PDF gagal tampil di dalam iframe, pengunjung masih dapat
+      mencoba tombol "Buka Tab". Beberapa browser tidak mendukung
+      tampilan PDF tertanam dengan cara yang sama.
+    */
+  })();
+</script>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

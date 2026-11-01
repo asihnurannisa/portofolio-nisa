@@ -1,0 +1,879 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Organization & Activities | Asih Nur Annisa</title>
+
+    <meta
+        name="description"
+        content="Galeri pengalaman organisasi Asih Nur Annisa, mulai dari OSIS SMK hingga kegiatan UKM Al-Banna."
+    >
+
+    <meta name="theme-color" content="#faf7f5">
+
+    <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        /* =========================
+           ORGANIZATION GALLERY
+        ========================= */
+
+        .org-page {
+            padding-bottom: 65px;
+        }
+
+        .org-hero {
+            padding: 42px 0 25px;
+        }
+
+        .org-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 27px;
+            font-size: 12px;
+            font-weight: 700;
+            transition: color 0.2s;
+        }
+
+        .org-back:hover {
+            color: var(--coral);
+        }
+
+        .org-title {
+            max-width: 800px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(34px, 5vw, 58px);
+            font-weight: 700;
+            line-height: 1.02;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+            margin: 15px 0;
+        }
+
+        .org-title span {
+            color: var(--coral);
+        }
+
+        .org-description {
+            max-width: 620px;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .org-hero-line {
+            height: 2px;
+            background: var(--line);
+            margin-top: 27px;
+        }
+
+        /* Intro card */
+
+        .org-intro {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 22px;
+            padding: 24px 27px;
+            margin: 10px 0 43px;
+            background: var(--pink);
+        }
+
+        .org-intro h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 21px;
+            line-height: 1.3;
+            margin: 8px 0;
+        }
+
+        .org-intro p {
+            max-width: 570px;
+            color: #51444b;
+            font-size: 12px;
+            margin: 0;
+        }
+
+        .org-counter {
+            min-width: 100px;
+            text-align: center;
+            padding: 13px;
+            background: var(--paper);
+            border: 1.5px solid var(--line);
+            border-radius: 12px;
+        }
+
+        .org-counter strong {
+            display: block;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            line-height: 1.2;
+            color: var(--coral);
+        }
+
+        .org-counter span {
+            font-size: 10px;
+            color: var(--muted);
+        }
+
+        /* Gallery sections */
+
+        .org-section {
+            margin-bottom: 48px;
+            scroll-margin-top: 90px;
+        }
+
+        .org-section-heading {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 19px;
+        }
+
+        .org-section-heading h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(22px, 3vw, 30px);
+            line-height: 1.2;
+            letter-spacing: -0.8px;
+            margin: 9px 0 5px;
+        }
+
+        .org-section-heading p {
+            color: var(--muted);
+            font-size: 12px;
+            margin: 0;
+        }
+
+        .org-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 1;
+            color: var(--pink);
+            -webkit-text-stroke: 1px var(--line);
+        }
+
+        /* Consistent square gallery */
+
+        .org-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .org-photo {
+            min-width: 0;
+            overflow: hidden;
+            background: var(--paper);
+            border: 1.5px solid var(--line);
+            border-radius: 15px;
+            box-shadow: 3px 4px 0 var(--line);
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .org-photo:hover {
+            transform: translateY(-4px);
+            box-shadow: 5px 7px 0 var(--line);
+        }
+
+        .org-photo-button {
+            display: block;
+            width: 100%;
+            padding: 7px;
+            background: transparent;
+            border: 0;
+            text-align: left;
+            cursor: zoom-in;
+        }
+
+        .org-photo-image {
+            position: relative;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            background: #f0e4e8;
+            border: 1px solid #d9c7ce;
+            border-radius: 9px;
+        }
+
+        .org-photo-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.45s ease;
+        }
+
+        .org-photo:hover .org-photo-image img {
+            transform: scale(1.045);
+        }
+
+        .org-photo-image::after {
+            content: "↗";
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            display: grid;
+            place-items: center;
+            width: 30px;
+            height: 30px;
+            color: var(--ink);
+            background: var(--yellow);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            font-size: 17px;
+            font-weight: 700;
+            opacity: 0;
+            transform: translateY(4px);
+            transition: 0.2s ease;
+        }
+
+        .org-photo:hover .org-photo-image::after,
+        .org-photo-button:focus-visible .org-photo-image::after {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .org-photo-info {
+            padding: 11px 10px 13px;
+        }
+
+        .org-photo-category {
+            display: inline-block;
+            margin-bottom: 6px;
+            padding: 3px 6px;
+            color: var(--ink);
+            background: var(--yellow);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+
+        .org-photo-info h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            line-height: 1.4;
+            margin: 0 0 5px;
+        }
+
+        .org-photo-info p {
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Closing note */
+
+        .org-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 22px;
+            background: var(--paper);
+            border: 1.5px dashed var(--line);
+            border-radius: 14px;
+        }
+
+        .org-note-icon {
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            width: 39px;
+            height: 39px;
+            background: var(--yellow);
+            border: 1.5px solid var(--line);
+            border-radius: 10px;
+            font-size: 19px;
+        }
+
+        .org-note h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px;
+            margin: 0 0 5px;
+        }
+
+        .org-note p {
+            color: var(--muted);
+            font-size: 11px;
+            margin: 0;
+        }
+
+        /* Image lightbox */
+
+        .org-lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(32, 27, 31, 0.92);
+        }
+
+        .org-lightbox.open {
+            display: flex;
+        }
+
+        .org-lightbox-content {
+            position: relative;
+            width: min(680px, 100%);
+            max-height: 90vh;
+            text-align: center;
+        }
+
+        .org-lightbox-content img {
+            max-width: 100%;
+            max-height: 76vh;
+            margin: auto;
+            object-fit: contain;
+            border: 2px solid white;
+            border-radius: 10px;
+        }
+
+        .org-lightbox-caption {
+            color: white;
+            font-size: 12px;
+            margin-top: 13px;
+        }
+
+        .org-lightbox-close {
+            position: absolute;
+            top: -16px;
+            right: -12px;
+            display: grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            background: var(--yellow);
+            border: 1.5px solid var(--line);
+            border-radius: 10px;
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+        body.org-lightbox-open {
+            overflow: hidden;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 760px) {
+            .org-hero {
+                padding-top: 30px;
+            }
+
+            .org-title {
+                font-size: 39px;
+                letter-spacing: -1.4px;
+            }
+
+            .org-intro {
+                padding: 20px;
+                gap: 12px;
+            }
+
+            .org-counter {
+                min-width: 78px;
+                padding: 10px 7px;
+            }
+
+            .org-counter strong {
+                font-size: 24px;
+            }
+
+            .org-gallery {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 14px;
+            }
+
+            .org-photo-info {
+                padding: 9px 8px 11px;
+            }
+
+            .org-photo-info h3 {
+                font-size: 12px;
+            }
+
+            .org-section {
+                margin-bottom: 38px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .org-title {
+                font-size: 33px;
+            }
+
+            .org-intro {
+                grid-template-columns: 1fr;
+            }
+
+            .org-counter {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                width: fit-content;
+                min-width: 0;
+            }
+
+            .org-counter strong {
+                font-size: 21px;
+            }
+
+            .org-section-heading {
+                align-items: center;
+            }
+
+            .org-number {
+                font-size: 28px;
+            }
+
+            .org-gallery {
+                gap: 11px;
+            }
+
+            .org-photo {
+                border-radius: 11px;
+                box-shadow: 2px 3px 0 var(--line);
+            }
+
+            .org-photo-button {
+                padding: 5px;
+            }
+
+            .org-photo-category {
+                font-size: 7px;
+            }
+
+            .org-photo-info p {
+                font-size: 9px;
+            }
+
+            .org-note {
+                padding: 16px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .org-photo,
+            .org-photo-image img,
+            .org-photo-image::after {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER: tetap menggunakan navigasi website yang sudah ada -->
+    <header class="site-header">
+        <div class="container nav-wrap">
+
+            <a class="brand" href="about.html"
+               aria-label="Asih Nur Annisa - About">
+            
+                <span>ASIH <em>NUR ANNISA</em></span>
+                <span class="brand-tag">PORTO</span>
+            </a>
+
+            <nav class="nav-links" aria-label="Navigasi utama">
+                <a href="about.html">♙ About</a>
+                <a href="experience.html">▣ Experience</a>
+                <a href="projects.html">▧ Projects</a>
+                <a href="certificates.html">♙ Certificates</a>
+                <a href="contact.html">✉ Contact</a>
+            </nav>
+
+            <a class="nav-cta" href="contact.html">Hubungi Saya ↗</a>
+
+            <button class="menu-toggle"
+                    aria-expanded="false"
+                    aria-label="Buka menu">
+                Menu
+            </button>
+
+        </div>
+    </header>
+
+    <main class="org-page">
+
+        <!-- PAGE INTRO -->
+        <section class="org-hero">
+            <div class="container">
+
+                <a href="about.html" class="org-back">
+                    <span aria-hidden="true">←</span>
+                    Kembali ke About
+                </a>
+
+                <span class="eyebrow">Beyond Academics</span>
+
+                <h1 class="org-title">
+                    ORGANIZATION
+                    <span>& ACTIVITIES</span>
+                </h1>
+
+                <p class="org-description">
+                    Perjalanan belajar, berkontribusi, dan bekerja sama
+                    melalui berbagai kegiatan organisasi sejak SMK hingga
+                    perkuliahan.
+                </p>
+
+                <div class="org-hero-line"></div>
+
+            </div>
+        </section>
+
+        <div class="container">
+
+            <!-- INTRO CARD -->
+            <section class="card org-intro">
+                <div>
+                    <span class="mini-label">A Little About My Journey</span>
+
+                    <h2>Belajar Bertumbuh Bersama Organisasi.</h2>
+
+                    <p>
+                        Bagi saya, organisasi adalah tempat untuk belajar
+                        bertanggung jawab, berkomunikasi, mengelola kegiatan,
+                        dan memberikan kontribusi bersama tim. Berikut
+                        beberapa pengalaman dan dokumentasi kegiatan saya.
+                    </p>
+                </div>
+
+                <div class="org-counter">
+                    <strong>02</strong>
+                    <span>Perjalanan Organisasi</span>
+                </div>
+            </section>
+
+            <!-- OSIS GALLERY -->
+            <section class="org-section" id="osis">
+
+                <div class="org-section-heading">
+                    <div>
+                        <span class="eyebrow">Chapter 01 · SMK</span>
+                        <h2>OSIS & School Activities</h2>
+                        <p>
+                            Pengalaman berorganisasi dan berpartisipasi
+                            dalam kegiatan sekolah.
+                        </p>
+                    </div>
+
+                    <span class="org-number">01</span>
+                </div>
+
+                <div class="org-gallery">
+
+                    <article class="org-photo">
+                        <button class="org-photo-button"
+                                type="button"
+                                data-image="assets/images/organisasi/osis-1.jpg"
+                                data-caption="Kegiatan OSIS SMK">
+                            <div class="org-photo-image">
+                                <img
+                                    src="assets/images/organisasi/osis-1.jpg"
+                                    alt="Dokumentasi kegiatan OSIS SMK"
+                                    loading="lazy">
+                            </div>
+                        </button>
+
+                        <div class="org-photo-info">
+                            <span class="org-photo-category">OSIS · SMK</span>
+                            <h3>Kegiatan Organisasi</h3>
+                            <p>
+                                Dokumentasi pengalaman selama mengikuti OSIS.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="org-photo">
+                        <button class="org-photo-button"
+                                type="button"
+                                data-image="assets/images/organisasi/osis-2.jpg"
+                                data-caption="Kegiatan dan kebersamaan OSIS">
+                            <div class="org-photo-image">
+                                <img
+                                    src="assets/images/organisasi/osis-2.jpg"
+                                    alt="Dokumentasi kebersamaan anggota OSIS"
+                                    loading="lazy">
+                            </div>
+                        </button>
+
+                        <div class="org-photo-info">
+                            <span class="org-photo-category">OSIS · SMK</span>
+                            <h3>Kebersamaan Tim</h3>
+                            <p>
+                                Momen kebersamaan dan kerja sama dalam kegiatan.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="org-photo">
+                        <button class="org-photo-button"
+                                type="button"
+                                data-image="assets/images/organisasi/osis-3.jpg"
+                                data-caption="Dokumentasi kegiatan sekolah">
+                            <div class="org-photo-image">
+                                <img
+                                    src="assets/images/organisasi/osis-3.jpg"
+                                    alt="Dokumentasi kegiatan sekolah"
+                                    loading="lazy">
+                            </div>
+                        </button>
+
+                        <div class="org-photo-info">
+                            <span class="org-photo-category">OSIS · SMK</span>
+                            <h3>Partisipasi Kegiatan</h3>
+                            <p>
+                                Dokumentasi kegiatan sekolah yang diikuti.
+                            </p>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- UKM AL-BANNA GALLERY -->
+            <section class="org-section" id="albanna">
+
+                <div class="org-section-heading">
+                    <div>
+                        <span class="eyebrow">Chapter 02 · Campus</span>
+                        <h2>UKM Al-Banna</h2>
+                        <p>
+                            Pengalaman kepengurusan, kegiatan, dan kontribusi
+                            selama berorganisasi di kampus.
+                        </p>
+                    </div>
+
+                    <span class="org-number">02</span>
+                </div>
+
+                <div class="org-gallery">
+
+                    <article class="org-photo">
+                        <button class="org-photo-button"
+                                type="button"
+                                data-image="assets/images/organisasi/albanna-1.jpg"
+                                data-caption="Kegiatan Departemen Media Center UKM Al-Banna">
+                            <div class="org-photo-image">
+                                <img
+                                    src="assets/images/organisasi/albanna-1.jpg"
+                                    alt="Dokumentasi kegiatan UKM Al-Banna"
+                                    loading="lazy">
+                            </div>
+                        </button>
+
+                        <div class="org-photo-info">
+                            <span class="org-photo-category">Media Center</span>
+                            <h3>Departemen Media Center</h3>
+                            <p>
+                                Dokumentasi kegiatan selama menjadi bagian
+                                dari departemen.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="org-photo">
+                        <button class="org-photo-button"
+                                type="button"
+                                data-image="assets/images/organisasi/albanna-2.jpg"
+                                data-caption="Dokumentasi kegiatan tutor BMQ UKM Al-Banna">
+                            <div class="org-photo-image">
+                                <img
+                                    src="assets/images/organisasi/albanna-2.jpg"
+                                    alt="Dokumentasi kegiatan tutor BMQ"
+                                    loading="lazy">
+                            </div>
+                        </button>
+
+                        <div class="org-photo-info">
+                            <span class="org-photo-category">Tutor BMQ</span>
+                            <h3>Kegiatan Tutor BMQ</h3>
+                            <p>
+                                Dokumentasi kegiatan selama menjadi tutor
+                                BMQ di UKM Al-Banna.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="org-photo">
+                        <button class="org-photo-button"
+                                type="button"
+                                data-image="assets/images/organisasi/albanna-3.jpg"
+                                data-caption="Kebersamaan dan kegiatan UKM Al-Banna">
+                            <div class="org-photo-image">
+                                <img
+                                    src="assets/images/organisasi/albanna-3.jpg"
+                                    alt="Dokumentasi kebersamaan UKM Al-Banna"
+                                    loading="lazy">
+                            </div>
+                        </button>
+
+                        <div class="org-photo-info">
+                            <span class="org-photo-category">Campus Life</span>
+                            <h3>Kebersamaan & Kegiatan</h3>
+                            <p>
+                                Momen bersama anggota dan pengurus
+                                UKM Al-Banna.
+                            </p>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- CLOSING -->
+            <section class="org-note">
+                <div class="org-note-icon" aria-hidden="true">✦</div>
+
+                <div>
+                    <h3>Setiap Pengalaman Punya Cerita.</h3>
+
+                    <p>
+                        Pengalaman organisasi mengajarkan saya untuk
+                        bertanggung jawab, bekerja sama, mengelola tugas,
+                        dan terus belajar dari orang-orang di sekitar saya.
+                    </p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container footer-inner">
+
+            <div>
+                <div class="footer-brand">
+                    ASIH <em>NUR ANNISA</em>
+                    <span class="brand-tag">PORTO</span>
+                </div>
+
+                <div class="footer-note">
+                   Information Technology  · Administration · Data Entry
+                </div>
+            </div>
+
+            <div class="socials">
+                <a href="https://github.com/asihnurannisa"
+                   target="_blank"
+                   rel="noopener"
+                   aria-label="GitHub">GH</a>
+
+                <a href="mailto:asihnurannisa@gmail.com"
+                   aria-label="Email">✉</a>
+
+                <a href="projects.html"
+                   aria-label="Projects">▣</a>
+            </div>
+
+            <div class="footer-note">
+                © <span data-year></span> Asih Nur Annisa.
+  
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- IMAGE LIGHTBOX -->
+    <div class="org-lightbox"
+         id="orgLightbox"
+         role="dialog"
+         aria-modal="true"
+         aria-label="Pratinjau foto"
+         aria-hidden="true">
+
+        <div class="org-lightbox-content">
+
+            <button class="org-lightbox-close"
+                    type="button"
+                    aria-label="Tutup foto">
+                ×
+            </button>
+
+            <img id="orgLightboxImage" src="" alt="">
+
+            <p class="org-lightbox-caption"
+               id="orgLightboxCaption"></p>
+
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        /* =========================
+           GALLERY LIGHTBOX
+        ========================= */
+
+        const lightbox = document.getElementById("orgLightbox");
+        const lightboxImage = document.getElementById("orgLightboxImage");
+        const lightboxCaption = document.getElementById("orgLightboxCaption");
+        const closeButton = document.querySelector(".org-lightbox-close");
+
+        let previousFocus = null;
+
+        document.querySelectorAll(".org-photo-button").forEach((button) => {
+            button.addEventListener("click", () => {
+                const imagePath = button.dataset.image;
+                const caption = button.dataset.caption;
+
+                previousFocus = button;
+
+                lightboxImage.src = imagePath;
+                lightboxImage.alt = caption;
+                lightboxCaption.textContent = caption;
+
+                lightbox.classList.add("open");
+                lightbox.setAttribute("aria-hidden", "false");
+                document.body.classList.add("org-lightbox-open");
+
+                closeButton.focus();
+            });
+        });
+
+        function closeLightbox() {
+            lightbox.classList.remove("open");
+            lightbox.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("org-lightbox-open");
+
+            lightboxImage.src = "";
+
+            if (previousFocus) {
+                previousFocus.focus();
+            }
+        }
+
+        closeButton.addEventListener("click", closeLightbox);
+
+        lightbox.addEventListener("click", (event) => {
+            if (event.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && lightbox.classList.contains("open")) {
+                closeLightbox();
+            }
+        });
+    </script>
+
+</body>
+</html>

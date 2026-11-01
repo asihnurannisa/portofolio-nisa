@@ -1,0 +1,650 @@
+
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Contact | Asih Nur Annisa</title>
+  <meta
+    name="description"
+    content="Hubungi Asih Nur Annisa untuk kesempatan kerja di bidang administrasi, data entry, quality assurance, dan teknologi informasi."
+  >
+  <meta name="theme-color" content="#fff7fb">
+
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    /* =========================
+       CONTACT PAGE
+    ========================= */
+
+    .contact-page {
+      --contact-pink: #f5a8c8;
+      --contact-pink-light: #fff0f6;
+      --contact-border: #f0d5e2;
+      --contact-text: #49313d;
+      --contact-muted: #826d79;
+
+      color: var(--contact-text);
+    }
+
+    .contact-page,
+    .contact-page * {
+      box-sizing: border-box;
+    }
+
+    .contact-page .page-hero .lead {
+      max-width: 680px;
+      line-height: 1.8;
+    }
+
+    .contact-page .contact-section {
+      padding-top: 45px;
+      padding-bottom: 75px;
+    }
+
+    /* SECTION INTRO */
+
+    .contact-intro {
+      max-width: 650px;
+      margin-bottom: 30px;
+    }
+
+    .contact-intro .eyebrow {
+      color: #bd668e;
+    }
+
+    .contact-intro h2 {
+      margin: 8px 0 10px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(25px, 4vw, 34px);
+      line-height: 1.25;
+      letter-spacing: -.7px;
+    }
+
+    .contact-intro p {
+      margin: 0;
+      color: var(--contact-muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    /* MAIN LAYOUT */
+
+    .contact-page .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+      align-items: start;
+      gap: 25px;
+      width: 100%;
+    }
+
+    .contact-page .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      min-width: 0;
+    }
+
+    /* CONTACT LINK CARDS */
+
+    .contact-page .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-width: 0;
+      padding: 22px;
+      border: 1px solid var(--contact-border);
+      border-radius: 15px;
+      background: #ffffff;
+      color: var(--contact-text);
+      text-decoration: none;
+      box-shadow: 0 5px 20px rgba(113, 63, 85, .035);
+      transition:
+        transform .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease;
+    }
+
+    .contact-page .contact-link:hover {
+      transform: translateY(-3px);
+      border-color: #e8a5c2;
+      box-shadow: 0 10px 25px rgba(113, 63, 85, .08);
+    }
+
+    .contact-page .contact-link:focus-visible {
+      outline: 3px solid #e98bb5;
+      outline-offset: 4px;
+    }
+
+    .contact-page .contact-icon {
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      width: 49px;
+      height: 49px;
+      border: 1px solid #f0d1df;
+      border-radius: 13px;
+      background: var(--contact-pink-light);
+      color: #bd668e;
+      font-size: 21px;
+    }
+
+    .contact-page .contact-link > div {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .contact-page .mini-label {
+      display: block;
+      margin-bottom: 5px;
+      color: #bd668e;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .contact-page .contact-link h3 {
+      margin: 0 0 5px;
+      color: var(--contact-text);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 17px;
+      line-height: 1.4;
+    }
+
+    .contact-page .contact-link p {
+      margin: 0;
+      color: var(--contact-muted);
+      font-size: 12px;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-page .contact-arrow {
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      width: 33px;
+      height: 33px;
+      border-radius: 9px;
+      background: var(--contact-pink-light);
+      color: #bd668e;
+      font-size: 16px;
+      transition: transform .2s ease;
+    }
+
+    .contact-page .contact-link:hover .contact-arrow {
+      transform: translate(2px, -2px);
+    }
+
+    /* PROFILE CARD */
+
+    .contact-page .status-card {
+      min-width: 0;
+      padding: 25px;
+      border: 1px solid var(--contact-border);
+      border-radius: 16px;
+      background: #ffffff;
+      box-shadow: 0 5px 20px rgba(113, 63, 85, .04);
+    }
+
+    .contact-page .status-heading {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 23px;
+    }
+
+    .contact-page .status-heading h3 {
+      margin: 0;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      line-height: 1.4;
+    }
+
+    .contact-page .status-badge {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+      padding: 7px 10px;
+      border: 1px solid #f0d1df;
+      border-radius: 20px;
+      background: #fff0f6;
+      color: #a9537c;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .contact-page .status-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 14px 0;
+      border-bottom: 1px solid #f3e6ed;
+      color: var(--contact-muted);
+      font-size: 12px;
+      line-height: 1.8;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-page .status-row:last-of-type {
+      border-bottom: 0;
+    }
+
+    .contact-page .status-row .status-symbol {
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      margin-top: 1px;
+      border-radius: 8px;
+      background: var(--contact-pink-light);
+      color: #bd668e;
+      font-size: 13px;
+    }
+
+    .contact-page .status-row strong {
+      color: var(--contact-text);
+    }
+
+    /* CTA BOX */
+
+    .contact-page .credential-box {
+      margin-top: 22px;
+      padding: 20px;
+      border: 1px solid #f0d5e2;
+      border-radius: 13px;
+      background: #fff7fb;
+    }
+
+    .contact-page .credential-box .mini-label {
+      margin-bottom: 9px;
+    }
+
+    .contact-page .credential-box p {
+      margin: 0 0 17px;
+      color: var(--contact-muted);
+      font-size: 12px;
+      line-height: 1.85;
+    }
+
+    .contact-page .contact-email-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      min-height: 45px;
+      padding: 12px 16px;
+      border: 1px solid #e9a0bf;
+      border-radius: 10px;
+      background: var(--contact-pink);
+      color: #49313d;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      transition: background .2s ease, transform .2s ease;
+    }
+
+    .contact-page .contact-email-btn:hover {
+      transform: translateY(-2px);
+      background: #ef8eb7;
+    }
+
+    .contact-page .contact-email-btn:focus-visible {
+      outline: 3px solid #e98bb5;
+      outline-offset: 3px;
+    }
+
+    /* CLOSING NOTE */
+
+    .contact-page .contact-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 25px;
+      padding: 18px 20px;
+      border: 1px solid var(--contact-border);
+      border-radius: 13px;
+      background: #fff7fb;
+    }
+
+    .contact-page .contact-note-icon {
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+      background: #fce5ef;
+      color: #a9537c;
+      font-weight: 700;
+    }
+
+    .contact-page .contact-note p {
+      margin: 0;
+      color: var(--contact-muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 760px) {
+      .contact-page .contact-section {
+        padding-top: 30px;
+        padding-bottom: 50px;
+      }
+
+      .contact-page .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+      }
+
+      .contact-page .contact-link {
+        gap: 12px;
+        padding: 17px;
+      }
+
+      .contact-page .contact-icon {
+        width: 43px;
+        height: 43px;
+        border-radius: 11px;
+      }
+
+      .contact-page .contact-link h3 {
+        font-size: 15px;
+      }
+
+      .contact-page .status-card {
+        padding: 20px;
+      }
+
+      .contact-page .contact-intro {
+        margin-bottom: 23px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .contact-page .contact-link {
+        gap: 10px;
+        padding: 14px 12px;
+      }
+
+      .contact-page .contact-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 17px;
+      }
+
+      .contact-page .contact-link p {
+        font-size: 11px;
+      }
+
+      .contact-page .contact-arrow {
+        width: 28px;
+        height: 28px;
+      }
+
+      .contact-page .status-card {
+        padding: 16px;
+      }
+
+      .contact-page .status-heading {
+        flex-direction: column;
+      }
+
+      .contact-page .credential-box {
+        padding: 16px;
+      }
+
+      .contact-page .contact-note {
+        padding: 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .contact-page .contact-link,
+      .contact-page .contact-arrow,
+      .contact-page .contact-email-btn {
+        transition: none;
+      }
+
+      .contact-page .contact-link:hover,
+      .contact-page .contact-email-btn:hover {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="about.html" aria-label="Asih Nur Annisa - About">
+    
+      <span>ASIH <em>NUR ANNISA</em></span>
+      <span class="brand-tag">PORTO</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Navigasi utama">
+      <a href="about.html">♙ About</a>
+      <a href="experience.html">▣ Experience</a>
+      <a href="projects.html">▧ Projects</a>
+      <a href="certificates.html">♙ Certificates</a>
+      <a href="contact.html" class="active" aria-current="page">✉ Contact</a>
+    </nav>
+
+    <a class="nav-cta" href="mailto:asihnurannisa@gmail.com?subject=Kesempatan%20Kerja">
+      Hubungi Saya ↗
+    </a>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-label="Buka menu"
+    >
+      Menu
+    </button>
+  </div>
+</header>
+
+<main class="contact-page">
+
+  <!-- PAGE INTRO -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">GET IN TOUCH</span>
+
+      <h1 class="page-title">
+        LET'S <span class="accent">CONNECT</span>
+      </h1>
+
+      <p class="lead">
+        Terbuka untuk kesempatan kerja di bidang administrasi,
+        data entry, quality assurance, dan teknologi informasi.
+        Jangan ragu untuk menghubungi saya.
+      </p>
+
+      <div class="hero-rule"></div>
+    </div>
+  </section>
+
+  <!-- CONTACT CONTENT -->
+  <section class="section contact-section">
+    <div class="container">
+
+      <div class="contact-intro">
+        <span class="eyebrow">CONTACT INFORMATION</span>
+        <h2>Let's work together.</h2>
+        <p>
+          Silakan pilih kontak di bawah ini untuk terhubung,
+          melihat proyek, atau berdiskusi mengenai kesempatan kerja.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+
+        <!-- CONTACT LINKS -->
+        <div class="contact-list reveal">
+
+          <!-- EMAIL -->
+          <a
+            class="contact-link"
+            href="mailto:asihnurannisa@gmail.com"
+          >
+            <span class="contact-icon" aria-hidden="true">✉</span>
+
+            <div>
+              <span class="mini-label">Official Contact</span>
+              <h3>Email</h3>
+              <p>asihnurannisa@gmail.com</p>
+            </div>
+
+            <span class="contact-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <!-- GITHUB -->
+          <a
+            class="contact-link"
+            href="https://github.com/asihnurannisa"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="contact-icon" aria-hidden="true">⌘</span>
+
+            <div>
+              <span class="mini-label">Code & Projects</span>
+              <h3>GitHub</h3>
+              <p>github.com/asihnurannisa</p>
+            </div>
+
+            <span class="contact-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <!-- PROJECT PORTFOLIO -->
+          <a
+            class="contact-link"
+            href="projects.html"
+          >
+            <span class="contact-icon" aria-hidden="true">▧</span>
+
+            <div>
+              <span class="mini-label">Selected Work</span>
+              <h3>Project Portfolio</h3>
+              <p>Lihat proyek dan bukti pengerjaan</p>
+            </div>
+
+            <span class="contact-arrow" aria-hidden="true">↗</span>
+          </a>
+
+        </div>
+
+        <!-- PROFILE CARD -->
+        <aside class="card status-card reveal">
+
+          <div class="status-heading">
+            <h3>Profil Singkat</h3>
+            <span class="status-badge">Fresh Graduate</span>
+          </div>
+
+          <div class="status-row">
+            <span class="status-symbol" aria-hidden="true">⌂</span>
+            <div>
+              <strong>Domisili</strong><br>
+              Rukti Endah 06, Kec. Seputih Raman, Kab. Lampung Tengah
+            </div>
+          </div>
+
+          <div class="status-row">
+            <span class="status-symbol" aria-hidden="true">✉</span>
+            <div>
+              <strong>No Telp.</strong><br>
+              085157303335
+            </div>
+          </div>
+
+          <div class="status-row">
+            <span class="status-symbol" aria-hidden="true">▣</span>
+            <div>
+              <strong>Fokus Karier</strong><br>
+              Administrasi, Data Entry, Quality Assurance, dan IT
+            </div>
+          </div>
+
+          <div class="credential-box">
+            <span class="mini-label">LET'S WORK TOGETHER</span>
+
+            <p>
+              Saya tertarik pada kesempatan yang memungkinkan saya belajar,
+              berkontribusi, dan mengembangkan keterampilan secara profesional.
+              Saya siap berdiskusi mengenai peluang kerja yang sesuai.
+            </p>
+
+            <a
+              class="contact-email-btn"
+              href="mailto:asihnurannisa@gmail.com?subject=Kesempatan%20Kerja"
+            >
+              Kirim Email <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+        </aside>
+
+      </div>
+
+      
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+
+    <div>
+      <div class="footer-brand">
+        ASIH <em>NUR ANNISA</em>
+        <span class="brand-tag">PORTO</span>
+      </div>
+
+      <div class="footer-note">
+        Information Technology  · Administration · Data Entry
+      </div>
+    </div>
+
+    <div class="socials">
+      <a
+        href="https://github.com/asihnurannisa"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub"
+      >GH</a>
+
+      <a
+        href="mailto:asihnurannisa@gmail.com"
+        aria-label="Email"
+      >✉</a>
+
+      <a href="projects.html" aria-label="Projects">▣</a>
+    </div>
+
+    <div class="footer-note">
+      © <span data-year></span> Asih Nur Annisa. 
+    </div>
+
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
